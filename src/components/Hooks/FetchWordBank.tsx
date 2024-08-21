@@ -5,7 +5,11 @@ const fetchValidWords = async () => {
   await fetch(wordBank)
     .then((response) => response.text())
     .then((wordBank) => {
-      wordSet = new Set(wordBank.split("\n"));
+      let words = wordBank.split("\n");
+      words = words.map((word) => {
+        return word.trim();
+      });
+      wordSet = new Set(words);
     });
 
   return wordSet;
